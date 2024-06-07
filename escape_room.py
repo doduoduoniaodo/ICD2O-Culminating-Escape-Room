@@ -176,7 +176,6 @@ def Room_4():
     room4 = Toplevel()
     room4.title('The Machine Room')
 
-    timerObject.startTimer()
     room4timer = Label(room4)
     room4timer.pack()
     timerObject.attachLabel(room4timer)
@@ -199,17 +198,49 @@ def Room_4():
 
 
 #----------------------Room 5-----------------------
+def Room5Submit():
+    a5 = c_or_unc.get()
+    if a5 == 1:
+        Room_6A()
+    else:
+        Room_6B()
+
 def Room_5():
+    global c_or_unc
+    
     room5 = Toplevel()
 
     room5timer = Label(room5)
     room5timer.pack()
     timerObject.attachLabel(room5timer)
 
+    topframe = Frame(room5)
+    middleframe = Frame(room5)
+    bottomframe = Frame(room5)
+    topframe.pack()
+    middleframe.pack()
+    bottomframe.pack()
+    
+    q5 = Label(topframe, text='''You exit the machine room, now here is a narrow corridor. 
+At the end, there are two doors. There are signs on each door. 
+“Certainty” and “Uncertainty”. Which one would you choose?''')
+    q5.pack()
+    
+    c_or_unc = IntVar()
+    
+    radiobutton5_1 = Radiobutton(middleframe, text='Certainty', variable=c_or_unc, value=1)
+    radiobutton5_2 = Radiobutton(middleframe, text='Uncertainty', variable=c_or_unc, value=2)
+    radiobutton5_1.pack()
+    radiobutton5_2.pack()
+    
+    submit5 = Button(bottomframe, text='Submit', command=Room5Submit)
+    submit5.pack()
+    
 
 #----------------------Room 6-----------------------
 def Room_6A():
     room6a = Toplevel()
+    room6a.title('The Lab')
 
     room6atimer = Label(room6a)
     room6atimer.pack()
@@ -219,7 +250,8 @@ def Room_6A():
 #----------------------Room 7-----------------------
 def Room_6B():
     room6b = Toplevel()
-
+    room6b.title('The Unknown')
+    
     room6btimer = Label(room6b)
     room6btimer.pack()
     timerObject.attachLabel(room6btimer)
@@ -259,7 +291,7 @@ def Failed():
 
 
 #--------------------------------------
-timerObject = global_timer(10, Failed)
+timerObject = global_timer(1800, Failed)
 
 timer = Label(window1, text='30:00', font=('',15), bg='#98a2af', fg='red')
 timer.pack()
