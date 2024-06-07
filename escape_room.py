@@ -245,6 +245,8 @@ def Room_6A():
     room6atimer = Label(room6a)
     room6atimer.pack()
     timerObject.attachLabel(room6atimer)
+    
+    
 
 
 #----------------------Room 7-----------------------
