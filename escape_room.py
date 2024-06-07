@@ -37,12 +37,7 @@ You need to navigate through these corridors and solve puzzles to reach the “Q
 Secure the Quantum Nexus and don't let it fall into the wrong hands!''', font=('consolas', 10))
 instruction1.pack()
 
-timerObject = global_timer(1800)
 
-timer = Label(window1, text='30:00', font=('',15), bg='#98a2af', fg='red')
-timer.pack()
-
-timerObject.attachLabel(timer)
 
 
 #----------------------Room 1-----------------------
@@ -264,6 +259,14 @@ def Failed():
 
 
 #--------------------------------------
+timerObject = global_timer(10, Failed)
+
+timer = Label(window1, text='30:00', font=('',15), bg='#98a2af', fg='red')
+timer.pack()
+
+timerObject.attachLabel(timer)
+
+
 startbutton = Button(middleframe, text='Start!', command=Room_1)
 startbutton.pack()
 #startimage = ImageTk.PhotoImage(Image.open('1.jpg').resize((100, 100), Image.NEAREST))
