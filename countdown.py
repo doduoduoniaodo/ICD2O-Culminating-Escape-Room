@@ -17,5 +17,8 @@ class global_timer:
     def attachLabel(self, label):
         self.labels.append(label)
 
+    def detachLabel(self, label):
+        self.labels.remove(label)
+
     def startTimer(self):
         self.updateThread.start()
