@@ -501,19 +501,19 @@ What is the output?
 #----------------------Success-----------------------
 def Success():
     successwindow = Toplevel()
-    global_timer.stop()
+    timerObject.stop()
 
 
 
 #----------------------Failed-----------------------
 def Failed():
     failedwindow = Toplevel()
-    global_timer.stop()
+    timerObject.stop()
 
 
 
 #--------------------------------------
-timerObject = global_timer(1800, Failed)
+timerObject = global_timer(5, Failed)
 
 timer = Label(window1, text='30:00', font=('',15), bg='#98a2af', fg='red')
 timer.pack()
