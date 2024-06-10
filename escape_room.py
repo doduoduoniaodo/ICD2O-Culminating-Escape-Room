@@ -197,6 +197,7 @@ def Room_4():
     submit4.pack()
 
 
+
 #----------------------Room 5-----------------------
 def Room5Submit():
     a5 = c_or_unc.get()
@@ -237,8 +238,18 @@ At the end, there are two doors. There are signs on each door.
     submit5.pack()
     
 
+
 #----------------------Room 6-----------------------
+def Room6aSubmit():
+    a6a = entry6a.get()
+    if a6a == '':
+        Room_7()
+    else:
+        Trap()
+
 def Room_6A():
+    global entry6a
+    
     room6a = Toplevel()
     room6a.title('The Lab')
 
@@ -246,11 +257,89 @@ def Room_6A():
     room6atimer.pack()
     timerObject.attachLabel(room6atimer)
     
+    topframe = Frame(room6a)
+    middleframe = Frame(room6a)
+    bottomframe = Frame(room6a)
+    topframe.pack()
+    middleframe.pack()
+    bottomframe.pack()
+    
+    q6a = Label(topframe, text='''''')
+    q6a.pack()
+    
+    entry6a = Entry(middleframe, justify='center')
+    entry6a.pack()
+    
+    submit6a = Button(bottomframe, text='Submit', command=Room6aSubmit)
+    submit6a.pack()
+    
     
 
 
 #----------------------Room 7-----------------------
+def Room6bSubmit():
+    sudoku_grid_9x9 = []
+    for i in entry6b:
+        temp = []
+        for j in i:
+            temp.append(j.get().strip())
+        sudoku_grid_9x9.append(temp)
+    
+    # input validation
+    for i in range(9):
+        for j in range(9):
+            if sudoku_grid_9x9[i][j].isdigit() == False or int(sudoku_grid_9x9[i][j]) > 9 or int(sudoku_grid_9x9[i][j]) < 1:
+                tkinter.messagebox.showerror('Invalid input', 'Please enter valid values')
+                return
+    
+    
+    # Check if each row has no repeated number
+    for x in range(9):
+        temp = set()
+        for y in range(9):
+            temp.add(sudoku_grid_9x9[y][x])
+        if len(temp) != 9:
+            tryagain6b = Label(room4, text='Try Again...')
+            tryagain6b.pack()
+            return
+    
+    # Check if each column has no repeated numbe
+    for x in range(9):
+        temp = set(sudoku_grid_9x9[x])
+        if len(temp) != 9:
+            tryagain6b = Label(room4, text='Try Again...')
+            tryagain6b.pack()
+            return
+    
+    # Check if each smaller 3x3 square has no repeated number
+    for x in range(0, 7, 3):
+        for y in range(0, 7, 3):
+            temp = set()
+            temp.add(sudoku_grid_9x9[x][y])
+            temp.add(sudoku_grid_9x9[x][y+1])
+            temp.add(sudoku_grid_9x9[x][y+2])
+            
+            temp.add(sudoku_grid_9x9[x+1][y])
+            temp.add(sudoku_grid_9x9[x+1][y+1])
+            temp.add(sudoku_grid_9x9[x+1][y+2])
+            
+            temp.add(sudoku_grid_9x9[x+2][y])
+            temp.add(sudoku_grid_9x9[x+2][y+1])
+            temp.add(sudoku_grid_9x9[x+2][y+2])
+            
+            if len(temp) != 9:
+                tryagain6b = Label(room4, text='Try Again...')
+                tryagain6b.pack()
+                return
+    
+    # if the user answer correctly, call Correct() function
+    Room_7()        
+    return
+    
+
 def Room_6B():
+    global entry6b
+    
     room6b = Toplevel()
     room6b.title('The Unknown')
     
@@ -258,38 +347,169 @@ def Room_6B():
     room6btimer.pack()
     timerObject.attachLabel(room6btimer)
 
+    #q6b = Label(room6b, text='''Good, everyone likes uncertainty. You are in an unknown room. 
+#There is a magic cube! There is a design diagram. Each side is 3x3 and there are numbers on it. 
+#Combined 6 sides become a 6x6 grid. You notice that this may be a sudoku puzzle. 
+#Objective: Fill a 9 x 9 grid with digits so that each column, each row, and each of the six 3 x 3 subgrids that compose the grid contains all of the digits from 1 to 6. 
+#There may be a lot of possible solutions. Come up with one of any of them.''')
+    #q6b.pack()
+    
+    board = [[0, 5, 0, 4, 0, 9, 6, 0, 0], 
+        [8, 2, 0, 3, 1, 7, 0, 5, 0], 
+        [1, 4, 9, 6, 5, 8, 0, 0, 0], 
+        [2, 8, 5, 1, 3, 4, 9, 7, 6],
+        [6, 9, 1, 8, 0, 0, 5, 4, 3],
+        [3, 0, 4, 9, 6, 5, 1, 0, 8],
+        [0, 3, 0, 0, 9, 0, 0, 0 ,4],
+        [4, 1, 2, 0, 8, 6, 3, 9, 0],
+        [9, 6, 7, 0, 4, 3, 0, 1, 5]]
+    
+    canvas = Canvas(room6b, width=450, height=450)
+    canvas.pack()
+    
+    for i in range(9):
+        for j in range(9):
+            x = 50 * j
+            y = 50 * i
+            if i % 3 == 0:
+                canvas.create_line(x, y, x + 450, y, width=2)
+            if j % 3 == 0:
+                canvas.create_line(x, y, x, y + 450, width=2)
+            canvas.create_rectangle(x, y, x + 50, y + 50)
+            if board[i][j] != 0:
+                canvas.create_text(x + 25, y + 25, text=str(board[i][j]))
+
+    canvas.create_line(4, 4, 450, 4, width=2)
+    canvas.create_line(4, 4, 4, 450, width=2)
+    canvas.create_line(450, 0, 450, 450, width=2)
+    canvas.create_line(0, 450, 450, 450, width=2)
+    
+    entry6b = []
+    for i in range(9):
+        tempframe = Frame(room6b)
+        tempframe.pack()
+        temp = []
+        for j in range(9):
+            entry = Entry(tempframe, width=3, justify='center')
+            entry.pack(side=LEFT)
+            temp.append(entry)
+        entry6b.append(temp)
+    
+    submit6b = Button(room6b, text='Submit', command=Room6bSubmit)
+    submit6b.pack()
+
 
 #----------------------Trap-----------------------
 def Trap():
     trapwindow = Toplevel()
+    trapwindow.title('Trap')
+
+    traptimer = Label(trapwindow)
+    traptimer.pack()
+    timerObject.attachLabel(trapwindow)
     
+    q6a = Label(trapwindow, text='''That’s not correct! 
+You’ve fallen into a trap! The room fills with an alien gas, and your vision fades. You’ve failed…''')
+    q6a.pack()
+    
+    Failed()
+
 
 #----------------------Room 7-----------------------
+def Room7Submit():
+    a7 = entry7.get()
+    if a7 == '1729':
+        Room_8()
+    else:
+        tryagain7 = Label(room7, text='Try Again...')
+        tryagain7.pack()
+
 def Room_7():
+    global room7, entry7
     room7 = Toplevel()
+    room7.title('The Control Room')
 
     room7timer = Label(room7)
     room7timer.pack()
     timerObject.attachLabel(room7timer)
+    
+    topframe = Frame(room7)
+    middleframe = Frame(room7)
+    bottomframe = Frame(room7)
+    topframe.pack()
+    middleframe.pack()
+    bottomframe.pack()
+    
+    q7 = Label(topframe, text='''You are standing in front of the control room. Unfortunately, it is also locked. 
+There is a riddle on the digital lock: “What is the smallest positive integer that can be expressed as the sum of two cubes in two different ways?”''')
+    q7.pack()
+    
+    entry7 = Entry(middleframe, justify='center')
+    entry7.pack()
+    
+    submit7 = Button(bottomframe, text='Submit', command=Room7Submit)
+    submit7.pack()
+
 
 
 #----------------------Room 8-----------------------
+def Room8Submit():
+    a8 = entry8.get()
+    if a8 == '':
+        Success()
+    else:
+        Failed()
+
 def Room_8():
+    global room8, entry8
     room8 = Toplevel()
+    room8.title('The Quantum Nexus')
 
     room8timer = Label(room8)
     room8timer.pack()
     timerObject.attachLabel(room8timer)
+    
+    topframe = Frame(room8)
+    middleframe = Frame(room8)
+    bottomframe = Frame(room8)
+    topframe.pack()
+    middleframe.pack()
+    bottomframe.pack()
+    
+    q8 = Label(topframe, text='''You finally reach the control room. But you find that the “Quantum Nexus” is not in here! 
+You are nearly going to give up. But the curiosity leads you to press down the red button on the desks. 
+Suddenly, a well-protected box rose from the floor. There is a lock. The huge monitor suddenly turns on and shows the hint. 
+
+def solve(x):
+    if x < 10:
+        return solve(x * 2)
+    return x
+print(enigma(2))
+
+What is the output? 
+''')
+    q8.pack()
+    
+    entry8 = Entry(middleframe, justify='center')
+    entry8.pack()
+    
+    submit8 = Button(bottomframe, text='Submit', command=Room8Submit)
+    submit8.pack()
+
 
 
 #----------------------Success-----------------------
 def Success():
     successwindow = Toplevel()
+    global_timer.stop()
+
 
 
 #----------------------Failed-----------------------
 def Failed():
     failedwindow = Toplevel()
+    global_timer.stop()
+
 
 
 #--------------------------------------
