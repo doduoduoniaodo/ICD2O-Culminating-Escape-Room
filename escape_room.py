@@ -6,7 +6,7 @@ from countdown import global_timer
 # create main window
 window1 = Tk()
 window1.title('Escape Room Game')
-window1.geometry('800x500')
+window1.geometry('800x450')
 window1.config(background='#98a2af')
 
 # create a menubar for user to quit the program
@@ -23,10 +23,8 @@ quitlabel.pack(anchor='nw')
 # create three frame
 topframe = Frame(window1, relief=GROOVE, borderwidth=5, bg='#98a2af')
 middleframe = Frame(window1, relief=RAISED, borderwidth=5, bg='#98a2af')
-bottomframe = Frame(window1, borderwidth=20, bg='#98a2af')
 topframe.pack()
 middleframe.pack()
-bottomframe.pack()
 
 # create the instruction label
 instruction1 = Label(topframe, text='''You are a rookie agent at Sector 51. 
@@ -347,12 +345,12 @@ def Room_6B():
     room6btimer.pack()
     timerObject.attachLabel(room6btimer)
 
-    #q6b = Label(room6b, text='''Good, everyone likes uncertainty. You are in an unknown room. 
-#There is a magic cube! There is a design diagram. Each side is 3x3 and there are numbers on it. 
-#Combined 6 sides become a 6x6 grid. You notice that this may be a sudoku puzzle. 
-#Objective: Fill a 9 x 9 grid with digits so that each column, each row, and each of the six 3 x 3 subgrids that compose the grid contains all of the digits from 1 to 6. 
-#There may be a lot of possible solutions. Come up with one of any of them.''')
-    #q6b.pack()
+    q6b = Label(room6b, text='''Good, everyone likes uncertainty. You are in an unknown room. 
+There is a magic cube! It is a design diagram. Each side is 3x3 and there are numbers on it. 
+Combined 9 sides become a 9x9 grid. You notice that this may be a sudoku puzzle. 
+Objective: Fill a 9 x 9 grid with digits so that each column, each row, and each of the six 3 x 3 subgrids that compose the grid contains all of the digits from 1 to 6. 
+There may be a lot of possible solutions. Come up with one of any of them.''')
+    q6b.pack()
     
     board = [[0, 5, 0, 4, 0, 9, 6, 0, 0], 
         [8, 2, 0, 3, 1, 7, 0, 5, 0], 
@@ -502,18 +500,34 @@ What is the output?
 def Success():
     successwindow = Toplevel()
     timerObject.stop()
+    
+    successlabel = Label(successwindow, text='''After solving the final puzzle, you open the box. 
+The "Quantum Nexus" is in it! You input the passcode sequence. 
+After that, its light dims. The energy it emits becomes stabilized, and it goes dormant. 
+You’ve done it! You’ve secured the Quantum Nexus and saved Earth from a reality-twist catastrophe.''')
+    successlabel.pack()
 
+    quitbutton = Button(successwindow, text='Exit the Program', command=exit)
+    quitbutton.pack()
 
 
 #----------------------Failed-----------------------
 def Failed():
     failedwindow = Toplevel()
     timerObject.stop()
-
+    
+    failedlabel = Label(failedwindow, text='''Despite your best efforts, the puzzles are too challenging. 
+You are considered an enemy and are locked up here forever. The “Quantum Nexus” falls into the wrong hands finally. 
+Reality begins to warp and twist around you as the Nexus is activated. The world as you know it changes, and not for the better.''')
+    failedlabel.pack()
+    
+    quitbutton = Button(failedwindow, text='Exit the Program', command=exit)
+    quitbutton.pack()
+    
 
 
 #--------------------------------------
-timerObject = global_timer(5, Failed)
+timerObject = global_timer(1800, Failed)
 
 timer = Label(window1, text='30:00', font=('',15), bg='#98a2af', fg='red')
 timer.pack()
@@ -523,8 +537,8 @@ timerObject.attachLabel(timer)
 
 startbutton = Button(middleframe, text='Start!', command=Room_1)
 startbutton.pack()
-#startimage = ImageTk.PhotoImage(Image.open('1.jpg').resize((100, 100), Image.NEAREST))
-#startimagelabel = Label(bottomframe, image=startimage)
-#startimagelabel.pack()
+startimage = ImageTk.PhotoImage(Image.open('Desert.jpg').resize((300, 200), Image.NEAREST))
+startimagelabel = Label(window1, image=startimage)
+startimagelabel.pack()
   
 window1.mainloop()
