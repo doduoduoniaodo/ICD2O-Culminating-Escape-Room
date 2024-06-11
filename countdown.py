@@ -7,11 +7,13 @@ class global_timer:
     isEnded = False
     exteralStop = False
 
+    # initialize the timer
     def __init__(self, t, endAction):
         self.t = t
         self.updateThread = threading.Thread(target=self.updateTimer,daemon=True)
         self.endAction = endAction
 
+    # countdown
     def updateTimer(self):
         while self.t and not self.isEnded:
             while not self.isRunning:
@@ -21,25 +23,24 @@ class global_timer:
                 i.config(text='{:02d}:{:02d}'.format(self.mins, self.secs))
             time.sleep(1)
             self.t -= 1
-        if not self.exteralStop:
-            tkinter.messagebox.showinfo('')
+        
+        # when the time runs out, show a message box and call "Failed" function
+        if not self.isEnded:
+            tkinter.messagebox.showinfo('The Time Runs Out', 'The Time Runs Out...')
             self.endAction()
-
+    
+    # add existing labels to the list
     def attachLabel(self, label):
         self.labels.append(label)
 
+    # remove nonexistent labels
     def detachLabel(self, label):
         self.labels.remove(label)
 
+    # start the timer
     def startTimer(self):
         self.updateThread.start()
 
-    def pause(self):
-        self.isRunning = False
-
-    def resume(self):
-        self.isRunning = True
-
+    # stop the timer
     def stop(self):
         self.isEnded = True
-        self.exteralStop = True
