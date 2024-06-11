@@ -37,7 +37,6 @@ instruction1.pack()
 
 
 
-
 #----------------------Room 1-----------------------
 def Room1Submit():
     a1 = entry1.get()
@@ -50,12 +49,15 @@ def Room1Submit():
         tryagain1.pack()
 
 def Room_1():
-    global entry1, room1, room1timer
+    global entry1, room1, room1timer, entranceimage
 
     room1 = Toplevel()
     room1.title('The Entrance')
     
-    timerObject.startTimer()
+    try:
+        timerObject.startTimer()
+    except RuntimeError:
+        pass
     room1timer = Label(room1)
     room1timer.pack()
     timerObject.attachLabel(room1timer)
@@ -68,7 +70,7 @@ def Room_1():
     bottomframe.pack()
     
     q1 = Label(topframe, text='''You enter the palace and you want to go deeper.
-You soon find there is a huge door and a digital lock on it. You look closer and see a hint next to it. \
+You soon find there is a huge door and a digital lock on it. You look closer and see a hint next to it.
 “Binary number of the place you at”''')
     q1.pack()
     
@@ -77,6 +79,10 @@ You soon find there is a huge door and a digital lock on it. You look closer and
     
     submit1 = Button(bottomframe, text='Submit', command=Room1Submit)
     submit1.pack()
+    
+    entranceimage = ImageTk.PhotoImage(Image.open('Entrance.jpg'))
+    entranceimagelabel = Label(room1, image=entranceimage)
+    entranceimagelabel.pack()
 
 
 
@@ -84,13 +90,15 @@ You soon find there is a huge door and a digital lock on it. You look closer and
 def Room2Submit():
     a2 = entry2.get()
     if a2 == '111101':
+        timerObject.detachLabel(room2timer)
+        room2.destroy()
         Room_3()
     else:
         tryagain2 = Label(room2, text='Try Again...')
         tryagain2.pack()
     
 def Room_2():
-    global room2, entry2
+    global room2, entry2, meetingroomimage, room2timer
     
     room2 = Toplevel()
     room2.title('The Meeting Room')
@@ -116,20 +124,29 @@ There are no hints beside the digital lock. Fortunately, you find a notepad on t
     
     submit2 = Button(bottomframe, text='Submit', command=Room2Submit)
     submit2.pack()
+    
+    meetingroomimage = ImageTk.PhotoImage(Image.open('Meeting_Room.jpg').resize((600, 338), Image.NEAREST))
+    meetingroomimagelabel = Label(room2, image=meetingroomimage)
+    meetingroomimagelabel.pack()
 
 
 
 #----------------------Room 3-----------------------
 def Room3Submit():
     if upordown.get() == 1:
+        timerObject.detachLabel(room3timer)
+        room3.destroy()
         Room_4()
     else:
+        timerObject.detachLabel(room3timer)
+        room3.destroy()
         Room_1()
 
 def Room_3():
-    global upordown
+    global upordown, atriumimage, room3timer, room3
     
     room3 = Toplevel()
+    room3.title('The Atrium')
 
     room3timer = Label(room3)
     room3timer.pack()
@@ -156,6 +173,10 @@ There is an elevator. It can’t select floors. You can decide whether to go up 
     
     submit3 = Button(bottomframe, text='Submit', command=Room3Submit)
     submit3.pack()
+    
+    atriumimage = ImageTk.PhotoImage(Image.open('Atrium.jpg').resize((600, 338), Image.NEAREST))
+    atriumimagelabel = Label(room3, image=atriumimage)
+    atriumimagelabel.pack()
 
 
 
@@ -163,13 +184,15 @@ There is an elevator. It can’t select floors. You can decide whether to go up 
 def Room4Submit():
     a4 = entry4.get()
     if a4 == '':
+        timerObject.detachLabel(room4timer)
+        room4.destroy()
         Room_5()
     else:
         tryagain4 = Label(room4, text='Try Again...')
         tryagain4.pack()
 
 def Room_4():
-    global room4, entry4
+    global room4, entry4, machineroomimage, room4timer
     
     room4 = Toplevel()
     room4.title('The Machine Room')
@@ -193,6 +216,10 @@ def Room_4():
     
     submit4 = Button(bottomframe, text='Submit', command=Room4Submit)
     submit4.pack()
+    
+    machineroomimage = ImageTk.PhotoImage(Image.open('Machine_Room.jpg'))
+    machineroomimagelabel = Label(room4, image=machineroomimage)
+    machineroomimagelabel.pack()
 
 
 
@@ -200,14 +227,19 @@ def Room_4():
 def Room5Submit():
     a5 = c_or_unc.get()
     if a5 == 1:
+        timerObject.detachLabel(room5timer)
+        room5.destroy()
         Room_6A()
     else:
+        timerObject.detachLabel(room5timer)
+        room5.destroy()
         Room_6B()
 
 def Room_5():
-    global c_or_unc
+    global c_or_unc, narrowcorridormimage, room5, room5timer
     
     room5 = Toplevel()
+    room5.title('The Narrow Corridor')
 
     room5timer = Label(room5)
     room5timer.pack()
@@ -235,18 +267,26 @@ At the end, there are two doors. There are signs on each door.
     submit5 = Button(bottomframe, text='Submit', command=Room5Submit)
     submit5.pack()
     
+    narrowcorridormimage = ImageTk.PhotoImage(Image.open('Narrow_Corridor.jpg'))
+    narrowcorridorimagelabel = Label(room5, image=narrowcorridormimage)
+    narrowcorridorimagelabel.pack()
+    
 
 
-#----------------------Room 6-----------------------
+#----------------------Room 6A-----------------------
 def Room6aSubmit():
     a6a = entry6a.get()
     if a6a == '':
+        timerObject.detachLabel(room6atimer)
+        room6a.destroy()
         Room_7()
     else:
+        timerObject.detachLabel(room6atimer)
+        room6a.destroy()
         Trap()
 
 def Room_6A():
-    global entry6a
+    global entry6a, room6a, room6atimer
     
     room6a = Toplevel()
     room6a.title('The Lab')
@@ -274,7 +314,7 @@ def Room_6A():
     
 
 
-#----------------------Room 7-----------------------
+#----------------------Room 6B-----------------------
 def Room6bSubmit():
     sudoku_grid_9x9 = []
     for i in entry6b:
@@ -331,12 +371,14 @@ def Room6bSubmit():
                 return
     
     # if the user answer correctly, call Correct() function
+    timerObject.detachLabel(room6btimer)
+    room6b.destroy()
     Room_7()        
     return
     
 
 def Room_6B():
-    global entry6b
+    global entry6b, unknownimage, room6b, room6btimer
     
     room6b = Toplevel()
     room6b.title('The Unknown')
@@ -352,6 +394,9 @@ Objective: Fill a 9 x 9 grid with digits so that each column, each row, and each
 There may be a lot of possible solutions. Come up with one of any of them.''')
     q6b.pack()
     
+    sudokuframe = Frame(room6b)
+    sudokuframe.pack()
+    
     board = [[0, 5, 0, 4, 0, 9, 6, 0, 0], 
         [8, 2, 0, 3, 1, 7, 0, 5, 0], 
         [1, 4, 9, 6, 5, 8, 0, 0, 0], 
@@ -362,29 +407,29 @@ There may be a lot of possible solutions. Come up with one of any of them.''')
         [4, 1, 2, 0, 8, 6, 3, 9, 0],
         [9, 6, 7, 0, 4, 3, 0, 1, 5]]
     
-    canvas = Canvas(room6b, width=450, height=450)
-    canvas.pack()
+    canvas = Canvas(sudokuframe, width=225, height=225)
+    canvas.pack(side='left')
     
     for i in range(9):
         for j in range(9):
-            x = 50 * j
-            y = 50 * i
+            x = 25 * j
+            y = 25 * i
             if i % 3 == 0:
-                canvas.create_line(x, y, x + 450, y, width=2)
+                canvas.create_line(x, y, x + 225, y, width=2)
             if j % 3 == 0:
-                canvas.create_line(x, y, x, y + 450, width=2)
-            canvas.create_rectangle(x, y, x + 50, y + 50)
+                canvas.create_line(x, y, x, y + 225, width=2)
+            canvas.create_rectangle(x, y, x + 25, y + 25)
             if board[i][j] != 0:
-                canvas.create_text(x + 25, y + 25, text=str(board[i][j]))
+                canvas.create_text(x + 12.5, y + 12.5, text=str(board[i][j]))
 
-    canvas.create_line(4, 4, 450, 4, width=2)
-    canvas.create_line(4, 4, 4, 450, width=2)
-    canvas.create_line(450, 0, 450, 450, width=2)
-    canvas.create_line(0, 450, 450, 450, width=2)
+    canvas.create_line(4, 4, 225, 4, width=2)
+    canvas.create_line(4, 4, 4, 225, width=2)
+    canvas.create_line(225, 0, 225, 225, width=2)
+    canvas.create_line(0, 225, 225, 225, width=2)
     
     entry6b = []
     for i in range(9):
-        tempframe = Frame(room6b)
+        tempframe = Frame(sudokuframe)
         tempframe.pack()
         temp = []
         for j in range(9):
@@ -395,6 +440,11 @@ There may be a lot of possible solutions. Come up with one of any of them.''')
     
     submit6b = Button(room6b, text='Submit', command=Room6bSubmit)
     submit6b.pack()
+    
+    unknownimage = ImageTk.PhotoImage(Image.open('Unknown.jpg').resize((512, 288), Image.NEAREST))
+    unknownimagelabel = Label(room6b, image=unknownimage)
+    unknownimagelabel.pack()
+    
 
 
 #----------------------Trap-----------------------
@@ -409,7 +459,7 @@ def Trap():
     q6a = Label(trapwindow, text='''That’s not correct! 
 You’ve fallen into a trap! The room fills with an alien gas, and your vision fades. You’ve failed…''')
     q6a.pack()
-    
+
     Failed()
 
 
@@ -417,13 +467,15 @@ You’ve fallen into a trap! The room fills with an alien gas, and your vision f
 def Room7Submit():
     a7 = entry7.get()
     if a7 == '1729':
+        timerObject.detachLabel(room7timer)
+        room7.destroy()
         Room_8()
     else:
         tryagain7 = Label(room7, text='Try Again...')
         tryagain7.pack()
 
 def Room_7():
-    global room7, entry7
+    global room7, entry7, room7timer
     room7 = Toplevel()
     room7.title('The Control Room')
 
@@ -454,12 +506,16 @@ There is a riddle on the digital lock: “What is the smallest positive integer 
 def Room8Submit():
     a8 = entry8.get()
     if a8 == '':
+        timerObject.detachLabel(room8timer)
+        room8.destroy()
         Success()
     else:
+        timerObject.detachLabel(room8timer)
+        room8.destroy()
         Failed()
 
 def Room_8():
-    global room8, entry8
+    global room8, entry8, room8timer
     room8 = Toplevel()
     room8.title('The Quantum Nexus')
 

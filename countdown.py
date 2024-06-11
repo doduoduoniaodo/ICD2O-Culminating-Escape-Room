@@ -15,7 +15,7 @@ class global_timer:
 
     # countdown
     def updateTimer(self):
-        while self.t and not self.isEnded:
+        while self.t >= 0 and not self.isEnded:
             while not self.isRunning:
                 pass
             self.mins, self.secs = divmod(self.t, 60)
