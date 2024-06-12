@@ -48,11 +48,17 @@ def Room1Submit():
         tryagain1 = Label(room1, text='Try Again...')
         tryagain1.pack()
 
+def Room1Clue():
+    tkinter.messagebox.showinfo('Clue', 'You are at Sector 51')
+
 def Room_1():
     global entry1, room1, room1timer, entranceimage
 
     room1 = Toplevel()
     room1.title('The Entrance')
+    
+    clue1 = Button(room1, text='Clue', command=Room1Clue)
+    clue1.pack(anchor='ne')
     
     try:
         timerObject.startTimer()
@@ -62,14 +68,10 @@ def Room_1():
     room1timer.pack()
     timerObject.attachLabel(room1timer)
     
-    topframe = Frame(room1)
     middleframe = Frame(room1)
-    bottomframe = Frame(room1)
-    topframe.pack()
     middleframe.pack()
-    bottomframe.pack()
     
-    q1 = Label(topframe, text='''You enter the palace and you want to go deeper.
+    q1 = Label(middleframe, text='''You enter the palace and you want to go deeper.
 You soon find there is a huge door and a digital lock on it. You look closer and see a hint next to it.
 “Binary number of the place you at”''')
     q1.pack()
@@ -77,12 +79,14 @@ You soon find there is a huge door and a digital lock on it. You look closer and
     entry1 = Entry(middleframe, justify='center')
     entry1.pack()
     
-    submit1 = Button(bottomframe, text='Submit', command=Room1Submit)
+    submit1 = Button(middleframe, text='Submit', command=Room1Submit)
     submit1.pack()
     
     entranceimage = ImageTk.PhotoImage(Image.open('Entrance.jpg'))
     entranceimagelabel = Label(room1, image=entranceimage)
     entranceimagelabel.pack()
+    
+    
 
 
 
@@ -96,13 +100,19 @@ def Room2Submit():
     else:
         tryagain2 = Label(room2, text='Try Again...')
         tryagain2.pack()
-    
+
+def Room2Clue():
+    tkinter.messagebox.showinfo('Clue', '1 9 6 1')
+
 def Room_2():
     global room2, entry2, meetingroomimage, room2timer
     
     room2 = Toplevel()
     room2.title('The Meeting Room')
-
+    
+    clue2 = Button(room2, text='Clue', command=Room2Clue)
+    clue2.pack(anchor='ne')
+    
     room2timer = Label(room2)
     room2timer.pack()
     timerObject.attachLabel(room2timer)
@@ -116,7 +126,7 @@ def Room_2():
     
     q2 = Label(topframe, text='''You enter the meeting room and your find a bigger door. 
 There are no hints beside the digital lock. Fortunately, you find a notepad on the desk and there are some words… 
-“Tell me the date of the first human space flight! In binary!”''')
+“Tell me the date of the first human space flight! In binary! (19xx)”''')
     q2.pack()
     
     entry2 = Entry(middleframe, justify='center')
@@ -147,6 +157,7 @@ def Room_3():
     
     room3 = Toplevel()
     room3.title('The Atrium')
+    room3.attributes('-topmost', 'true')
 
     room3timer = Label(room3)
     room3timer.pack()
@@ -191,11 +202,17 @@ def Room4Submit():
         tryagain4 = Label(room4, text='Try Again...')
         tryagain4.pack()
 
+def Room4Clue():
+    tkinter.messagebox.showinfo('Clue', '')
+
 def Room_4():
     global room4, entry4, machineroomimage, room4timer
     
     room4 = Toplevel()
     room4.title('The Machine Room')
+    
+    clue4 = Button(room4, text='Clue', command=Room4Clue)
+    clue4.pack(anchor='ne')
 
     room4timer = Label(room4)
     room4timer.pack()
@@ -240,6 +257,7 @@ def Room_5():
     
     room5 = Toplevel()
     room5.title('The Narrow Corridor')
+    room5.attributes('-topmost', 'true')
 
     room5timer = Label(room5)
     room5timer.pack()
@@ -285,12 +303,18 @@ def Room6aSubmit():
         room6a.destroy()
         Trap()
 
+def Room6aClue():
+    tkinter.messagebox.showinfo('Clue', '')
+
 def Room_6A():
     global entry6a, room6a, room6atimer
     
     room6a = Toplevel()
     room6a.title('The Lab')
 
+    clue6a = Button(room6a, text='Clue', command=Room6aClue)
+    clue6a.pack(anchor='ne')
+    
     room6atimer = Label(room6a)
     room6atimer.pack()
     timerObject.attachLabel(room6atimer)
@@ -382,6 +406,7 @@ def Room_6B():
     
     room6b = Toplevel()
     room6b.title('The Unknown')
+    room6b.attributes('-topmost', 'true')
     
     room6btimer = Label(room6b)
     room6btimer.pack()
@@ -479,11 +504,17 @@ def Room7Submit():
         tryagain7 = Label(room7, text='Try Again...')
         tryagain7.pack()
 
+def Room7Clue():
+    tkinter.messagebox.showinfo('Clue', '12^3 + 1^3 = 10^3 + 9^3 = ?')
+
 def Room_7():
     global room7, entry7, room7timer, controlroomimage
     room7 = Toplevel()
     room7.title('The Control Room')
 
+    clue7 = Button(room7, text='Clue', command=Room7Clue)
+    clue7.pack(anchor='ne')
+    
     room7timer = Label(room7)
     room7timer.pack()
     timerObject.attachLabel(room7timer)
@@ -514,7 +545,7 @@ There is a riddle on the digital lock: “What is the smallest positive integer 
 #----------------------Room 8-----------------------
 def Room8Submit():
     a8 = entry8.get()
-    if a8 == '':
+    if a8 == '16':
         timerObject.detachLabel(room8timer)
         room8.destroy()
         Success()
@@ -524,7 +555,7 @@ def Room8Submit():
         Failed()
 
 def Room_8():
-    global room8, entry8, room8timer
+    global room8, entry8, room8timer, quantumnnexusimage
     room8 = Toplevel()
     room8.title('The Quantum Nexus')
 
@@ -547,7 +578,7 @@ def solve(x):
     if x < 10:
         return solve(x * 2)
     return x
-print(enigma(2))
+print(solve(2))
 
 What is the output? 
 ''')
@@ -567,6 +598,7 @@ What is the output?
 
 #----------------------Success-----------------------
 def Success():
+    global successimage
     successwindow = Toplevel()
     timerObject.stop()
     
@@ -579,10 +611,15 @@ You’ve done it! You’ve secured the Quantum Nexus and saved Earth from a real
     quitbutton = Button(successwindow, text='Exit the Program', command=exit)
     quitbutton.pack()
     
+    successimage = ImageTk.PhotoImage(Image.open('Success.jpg').resize((600, 400), Image.NEAREST))
+    successimagelabel = Label(successwindow, image=successimage)
+    successimagelabel.pack()
+    
 
 
 #----------------------Failed-----------------------
 def Failed():
+    global failedimage
     failedwindow = Toplevel()
     timerObject.stop()
     
@@ -594,6 +631,10 @@ Reality begins to warp and twist around you as the Nexus is activated. The world
     quitbutton = Button(failedwindow, text='Exit the Program', command=exit)
     quitbutton.pack()
     
+    failedimage = ImageTk.PhotoImage(Image.open('Failed.jpg').resize((600, 340), Image.NEAREST))
+    failedimagelabel = Label(failedwindow, image=failedimage)
+    failedimagelabel.pack()
+       
 
 
 #--------------------------------------
