@@ -449,6 +449,7 @@ There may be a lot of possible solutions. Come up with one of any of them.''')
 
 #----------------------Trap-----------------------
 def Trap():
+    global trapimage
     trapwindow = Toplevel()
     trapwindow.title('Trap')
 
@@ -460,6 +461,10 @@ def Trap():
 You’ve fallen into a trap! The room fills with an alien gas, and your vision fades. You’ve failed…''')
     q6a.pack()
 
+    trapimage = ImageTk.PhotoImage(Image.open('Trap.jpg'))
+    trapimagelabel = Label(trapwindow, image=trapimage)
+    trapimagelabel.pack()
+    
     Failed()
 
 
@@ -475,7 +480,7 @@ def Room7Submit():
         tryagain7.pack()
 
 def Room_7():
-    global room7, entry7, room7timer
+    global room7, entry7, room7timer, controlroomimage
     room7 = Toplevel()
     room7.title('The Control Room')
 
@@ -499,6 +504,10 @@ There is a riddle on the digital lock: “What is the smallest positive integer 
     
     submit7 = Button(bottomframe, text='Submit', command=Room7Submit)
     submit7.pack()
+    
+    controlroomimage = ImageTk.PhotoImage(Image.open('Control_Room.jpg').resize((653, 306), Image.NEAREST))
+    controlroomimagelabel = Label(room7, image=controlroomimage)
+    controlroomimagelabel.pack()
 
 
 
@@ -550,6 +559,10 @@ What is the output?
     submit8 = Button(bottomframe, text='Submit', command=Room8Submit)
     submit8.pack()
 
+    quantumnnexusimage = ImageTk.PhotoImage(Image.open('Quantum_Nexus.jpg'))
+    quantumnnexusimagelabel = Label(room8, image=quantumnnexusimage)
+    quantumnnexusimagelabel.pack()
+    
 
 
 #----------------------Success-----------------------
@@ -565,6 +578,7 @@ You’ve done it! You’ve secured the Quantum Nexus and saved Earth from a real
 
     quitbutton = Button(successwindow, text='Exit the Program', command=exit)
     quitbutton.pack()
+    
 
 
 #----------------------Failed-----------------------
