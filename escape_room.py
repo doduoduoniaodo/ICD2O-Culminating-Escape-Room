@@ -1,6 +1,7 @@
 from tkinter import *
 import tkinter.messagebox
 from PIL import Image, ImageTk
+from pygame import mixer
 from countdown import global_timer
 
 # create main window
@@ -8,6 +9,10 @@ window1 = Tk()
 window1.title('Escape Room Game')
 window1.geometry('800x450')
 window1.config(background='#98a2af')
+
+mixer.init()# initialise the pygame
+mixer.music.load("1.mp3")
+mixer.music.play(loops=0)
 
 # create a menubar for user to quit the program
 menubar = Menu(window1)
@@ -29,7 +34,7 @@ middleframe.pack()
 # create the instruction label
 instruction1 = Label(topframe, text='''You are a rookie agent at Sector 51. 
 Your task is to retrieve a powerful artifact named “Quantum Nexus” which can manipulate reality. 
-The only intelligence is that artifact is now in at an abandoned palace in the Nevade Desert. 
+The only intelligence is that artifact is now in at an abandoned palace in the Nevade Desert. \n
 Now, you are in the palace and there are labyrinthine corridors. 
 You need to navigate through these corridors and solve puzzles to reach the “Quantum Nexus”. 
 Secure the Quantum Nexus and don't let it fall into the wrong hands!''', font=('consolas', 10))
