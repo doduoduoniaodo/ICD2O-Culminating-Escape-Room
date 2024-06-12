@@ -11,8 +11,9 @@ window1.geometry('800x450')
 window1.config(background='#98a2af')
 
 mixer.init()# initialise the pygame
-mixer.music.load("1.mp3")
-mixer.music.play(loops=0)
+mixer.music.load("Background_music.mp3")
+mixer.music.set_volume(0.4)
+mixer.music.play(loops=8)
 
 # create a menubar for user to quit the program
 menubar = Menu(window1)
