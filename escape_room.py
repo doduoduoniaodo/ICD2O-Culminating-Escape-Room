@@ -203,7 +203,7 @@ There is an elevator. It can’t select floors. You can decide whether to go up 
 #----------------------Room 4-----------------------
 def Room4Submit():
     a4 = entry4.get()
-    if a4 == '':
+    if a4 == '7.5':
         timerObject.detachLabel(room4timer)
         room4.destroy()
         Room_5()
@@ -212,10 +212,10 @@ def Room4Submit():
         tryagain4.pack()
 
 def Room4Clue():
-    tkinter.messagebox.showinfo('Clue', '')
+    tkinter.messagebox.showinfo('Clue', 'The minute hand is at 90 degrees, and the hour hand is at 97.5 degrees')
 
 def Room_4():
-    global room4, entry4, machineroomimage, room4timer
+    global room4, entry4, clockimage, machineroomimage, room4timer
     
     room4 = Toplevel()
     room4.title('The Machine Room')
@@ -227,6 +227,10 @@ def Room_4():
     room4timer.pack()
     timerObject.attachLabel(room4timer)
     
+    clockimage = ImageTk.PhotoImage(Image.open('images/3_15.png').resize((182, 182), Image.NEAREST))
+    clockimagelabel = Label(room4, image=clockimage)
+    clockimagelabel.pack()
+    
     topframe = Frame(room4)
     middleframe = Frame(room4)
     bottomframe = Frame(room4)
@@ -234,7 +238,10 @@ def Room_4():
     middleframe.pack()
     bottomframe.pack()
     
-    q4 = Label(topframe, text='''''')
+    q4 = Label(topframe, text='''You come to the machine room but you can’t see anything. 
+You feel for the light switch on the wall and turn it on. There are some old computers on the desks. 
+Beside the screen, there is a door. Again, no hints. You notice that there is a note on the desk. 
+“The passcode is the angle between the hour and minute hands of the clock”''')
     q4.pack()
     
     entry4 = Entry(middleframe, justify='center')
@@ -303,7 +310,7 @@ At the end, there are two doors. There are signs on each door.
 #----------------------Room 6A-----------------------
 def Room6aSubmit():
     a6a = entry6a.get()
-    if a6a == '':
+    if a6a == '36':
         timerObject.detachLabel(room6atimer)
         room6a.destroy()
         Room_7()
@@ -313,10 +320,10 @@ def Room6aSubmit():
         Trap()
 
 def Room6aClue():
-    tkinter.messagebox.showinfo('Clue', '')
+    tkinter.messagebox.showinfo('Clue', 'The answer in the centre of each triangle equals the difference between the top and left hand values, multiplied by the right hand value.')
 
 def Room_6A():
-    global entry6a, room6a, room6atimer
+    global entry6a, room6a, room6atimer, room6apuzzleimage, labimage
     
     room6a = Toplevel()
     room6a.title('The Lab')
@@ -327,6 +334,10 @@ def Room_6A():
     room6atimer = Label(room6a, fg='red')
     room6atimer.pack()
     timerObject.attachLabel(room6atimer)
+    
+    room6apuzzleimage = ImageTk.PhotoImage(Image.open('images/room_6a_puzzle.png'))
+    room6apuzzleimagelabel = Label(room6a, image=room6apuzzleimage)
+    room6apuzzleimagelabel.pack()
     
     topframe = Frame(room6a)
     middleframe = Frame(room6a)
@@ -343,6 +354,10 @@ def Room_6A():
     
     submit6a = Button(bottomframe, text='Submit', command=Room6aSubmit)
     submit6a.pack()
+    
+    labimage = ImageTk.PhotoImage(Image.open('images/Lab.jpg').resize((512, 288), Image.NEAREST))
+    labimagelabel = Label(room6a, image=labimage)
+    labimagelabel.pack()
     
     
 
@@ -605,6 +620,7 @@ What is the output?
 def Success():
     global successimage
     successwindow = Toplevel()
+    successwindow.title('Success')
     timerObject.stop()
     
     successlabel = Label(successwindow, text='''After solving the final puzzle, you open the box. 
@@ -626,6 +642,7 @@ You’ve done it! You’ve secured the Quantum Nexus and saved Earth from a real
 def Failed():
     global failedimage
     failedwindow = Toplevel()
+    failedwindow.title('Failed')
     timerObject.stop()
     
     failedlabel = Label(failedwindow, text='''Despite your best efforts, the puzzles are too challenging. 
