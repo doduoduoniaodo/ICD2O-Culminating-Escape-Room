@@ -73,7 +73,7 @@ def Room_1():
         timerObject.startTimer()
     except RuntimeError:
         pass
-    room1timer = Label(room1)
+    room1timer = Label(room1, fg='red')
     room1timer.pack()
     timerObject.attachLabel(room1timer)
     
@@ -122,7 +122,7 @@ def Room_2():
     clue2 = Button(room2, text='Clue', command=Room2Clue)
     clue2.pack(anchor='ne')
     
-    room2timer = Label(room2)
+    room2timer = Label(room2, fg='red')
     room2timer.pack()
     timerObject.attachLabel(room2timer)
 
@@ -168,7 +168,7 @@ def Room_3():
     room3.title('The Atrium')
     room3.attributes('-topmost', 'true')
 
-    room3timer = Label(room3)
+    room3timer = Label(room3, fg='red')
     room3timer.pack()
     timerObject.attachLabel(room3timer)
 
@@ -223,7 +223,7 @@ def Room_4():
     clue4 = Button(room4, text='Clue', command=Room4Clue)
     clue4.pack(anchor='ne')
 
-    room4timer = Label(room4)
+    room4timer = Label(room4, fg='red')
     room4timer.pack()
     timerObject.attachLabel(room4timer)
     
@@ -268,7 +268,7 @@ def Room_5():
     room5.title('The Narrow Corridor')
     room5.attributes('-topmost', 'true')
 
-    room5timer = Label(room5)
+    room5timer = Label(room5, fg='red')
     room5timer.pack()
     timerObject.attachLabel(room5timer)
 
@@ -324,7 +324,7 @@ def Room_6A():
     clue6a = Button(room6a, text='Clue', command=Room6aClue)
     clue6a.pack(anchor='ne')
     
-    room6atimer = Label(room6a)
+    room6atimer = Label(room6a, fg='red')
     room6atimer.pack()
     timerObject.attachLabel(room6atimer)
     
@@ -417,7 +417,7 @@ def Room_6B():
     room6b.title('The Unknown')
     room6b.attributes('-topmost', 'true')
     
-    room6btimer = Label(room6b)
+    room6btimer = Label(room6b, fg='red')
     room6btimer.pack()
     timerObject.attachLabel(room6btimer)
 
@@ -486,14 +486,10 @@ def Trap():
     global trapimage
     trapwindow = Toplevel()
     trapwindow.title('Trap')
-
-    traptimer = Label(trapwindow)
-    traptimer.pack()
-    timerObject.attachLabel(trapwindow)
     
-    q6a = Label(trapwindow, text='''That’s not correct! 
+    qtrap = Label(trapwindow, text='''That’s not correct! 
 You’ve fallen into a trap! The room fills with an alien gas, and your vision fades. You’ve failed…''')
-    q6a.pack()
+    qtrap.pack()
 
     trapimage = ImageTk.PhotoImage(Image.open('images/Trap.jpg'))
     trapimagelabel = Label(trapwindow, image=trapimage)
@@ -524,7 +520,7 @@ def Room_7():
     clue7 = Button(room7, text='Clue', command=Room7Clue)
     clue7.pack(anchor='ne')
     
-    room7timer = Label(room7)
+    room7timer = Label(room7, fg='red')
     room7timer.pack()
     timerObject.attachLabel(room7timer)
     
@@ -568,7 +564,7 @@ def Room_8():
     room8 = Toplevel()
     room8.title('The Quantum Nexus')
 
-    room8timer = Label(room8)
+    room8timer = Label(room8, fg='red')
     room8timer.pack()
     timerObject.attachLabel(room8timer)
     
@@ -646,7 +642,7 @@ Reality begins to warp and twist around you as the Nexus is activated. The world
        
 
 
-#--------------------------------------
+#---------------------------------------------------
 timerObject = global_timer(1800, Failed)
 
 timer = Label(window1, text='30:00', font=('',15), bg='#98a2af', fg='red')
