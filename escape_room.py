@@ -28,6 +28,9 @@ window1.config(menu = menubar)
 quitlabel = Label(window1, text='👆Quit the program', font=('Consolas', 8), bg='#98a2af')
 quitlabel.pack(anchor='nw')
 
+warninglabel = Label(window1, text='***DO NOT CLOSE ANY WINDOW BY CLICKING THE TOP-RIGHT “❌” BUTTON***', 
+                     fg='red')
+warninglabel.pack()
 
 # create three frame
 topframe = Frame(window1, relief=GROOVE, borderwidth=5, bg='#98a2af')
@@ -385,7 +388,7 @@ def Room6bSubmit():
         for y in range(9):
             temp.add(sudoku_grid_9x9[y][x])
         if len(temp) != 9:
-            tryagain6b = Label(room4, text='Try Again...')
+            tryagain6b = Label(room6b, text='Try Again...')
             tryagain6b.pack()
             return
     
@@ -393,7 +396,7 @@ def Room6bSubmit():
     for x in range(9):
         temp = set(sudoku_grid_9x9[x])
         if len(temp) != 9:
-            tryagain6b = Label(room4, text='Try Again...')
+            tryagain6b = Label(room6b, text='Try Again...')
             tryagain6b.pack()
             return
     
@@ -414,7 +417,7 @@ def Room6bSubmit():
             temp.add(sudoku_grid_9x9[x+2][y+2])
             
             if len(temp) != 9:
-                tryagain6b = Label(room4, text='Try Again...')
+                tryagain6b = Label(room6b, text='Try Again...')
                 tryagain6b.pack()
                 return
     
@@ -423,14 +426,20 @@ def Room6bSubmit():
     room6b.destroy()
     Room_7()        
     return
-    
+
+def Room6bClue():
+    answer6b = Label(room6b, text=answer)
+    answer6b.pack()
 
 def Room_6B():
-    global entry6b, unknownimage, room6b, room6btimer
+    global entry6b, unknownimage, room6b, room6btimer, answer
     
     room6b = Toplevel()
     room6b.title('The Unknown')
     room6b.attributes('-topmost', 'true')
+    
+    clue6b = Button(room6b, text='Clue', command=Room6bClue)
+    clue6b.pack(anchor='ne')
     
     room6btimer = Label(room6b, fg='red')
     room6btimer.pack()
@@ -455,6 +464,17 @@ There may be a lot of possible solutions. Come up with one of any of them.''')
         [0, 3, 0, 0, 9, 0, 0, 0 ,4],
         [4, 1, 2, 0, 8, 6, 3, 9, 0],
         [9, 6, 7, 0, 4, 3, 0, 1, 5]]
+    
+    # Answer:
+    answer = [[7, 5, 3, 4, 2, 9, 6, 8, 1], 
+            [8, 2, 6, 3, 1, 7, 4, 5, 9], 
+            [1, 4, 9, 6, 5, 8, 7, 3, 2], 
+            [2, 8, 5, 1, 3, 4, 9, 7, 6],
+            [6, 9, 1, 8, 7, 2, 5, 4, 3],
+            [3, 7, 4, 9, 6, 5, 1, 2, 8],
+            [5, 3, 8, 7, 9, 1, 2, 6 ,4],
+            [4, 1, 2, 5, 8, 6, 3, 9, 7],
+            [9, 6, 7, 2, 4, 3, 8, 1, 5]]
     
     canvas = Canvas(sudokuframe, width=225, height=225)
     canvas.pack(side='left')
