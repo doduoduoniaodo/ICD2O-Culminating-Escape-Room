@@ -10,7 +10,10 @@ window1.title('Escape Room Game')
 window1.geometry('800x450')
 window1.config(background='#98a2af')
 
-mixer.init()# initialise the pygame
+# initialise the pygame
+mixer.init()
+
+# play the background music
 mixer.music.load("Background_music.mp3")
 mixer.music.set_volume(0.4)
 mixer.music.play(loops=8)
@@ -88,7 +91,7 @@ You soon find there is a huge door and a digital lock on it. You look closer and
     submit1 = Button(middleframe, text='Submit', command=Room1Submit)
     submit1.pack()
     
-    entranceimage = ImageTk.PhotoImage(Image.open('Entrance.jpg'))
+    entranceimage = ImageTk.PhotoImage(Image.open('images/Entrance.jpg'))
     entranceimagelabel = Label(room1, image=entranceimage)
     entranceimagelabel.pack()
     
@@ -141,7 +144,7 @@ There are no hints beside the digital lock. Fortunately, you find a notepad on t
     submit2 = Button(bottomframe, text='Submit', command=Room2Submit)
     submit2.pack()
     
-    meetingroomimage = ImageTk.PhotoImage(Image.open('Meeting_Room.jpg').resize((600, 338), Image.NEAREST))
+    meetingroomimage = ImageTk.PhotoImage(Image.open('images/Meeting_Room.jpg').resize((600, 338), Image.NEAREST))
     meetingroomimagelabel = Label(room2, image=meetingroomimage)
     meetingroomimagelabel.pack()
 
@@ -191,7 +194,7 @@ There is an elevator. It can’t select floors. You can decide whether to go up 
     submit3 = Button(bottomframe, text='Submit', command=Room3Submit)
     submit3.pack()
     
-    atriumimage = ImageTk.PhotoImage(Image.open('Atrium.jpg').resize((600, 338), Image.NEAREST))
+    atriumimage = ImageTk.PhotoImage(Image.open('images/Atrium.jpg').resize((600, 338), Image.NEAREST))
     atriumimagelabel = Label(room3, image=atriumimage)
     atriumimagelabel.pack()
 
@@ -240,7 +243,7 @@ def Room_4():
     submit4 = Button(bottomframe, text='Submit', command=Room4Submit)
     submit4.pack()
     
-    machineroomimage = ImageTk.PhotoImage(Image.open('Machine_Room.jpg'))
+    machineroomimage = ImageTk.PhotoImage(Image.open('images/Machine_Room.jpg'))
     machineroomimagelabel = Label(room4, image=machineroomimage)
     machineroomimagelabel.pack()
 
@@ -291,7 +294,7 @@ At the end, there are two doors. There are signs on each door.
     submit5 = Button(bottomframe, text='Submit', command=Room5Submit)
     submit5.pack()
     
-    narrowcorridormimage = ImageTk.PhotoImage(Image.open('Narrow_Corridor.jpg'))
+    narrowcorridormimage = ImageTk.PhotoImage(Image.open('images/Narrow_Corridor.jpg'))
     narrowcorridorimagelabel = Label(room5, image=narrowcorridormimage)
     narrowcorridorimagelabel.pack()
     
@@ -472,7 +475,7 @@ There may be a lot of possible solutions. Come up with one of any of them.''')
     submit6b = Button(room6b, text='Submit', command=Room6bSubmit)
     submit6b.pack()
     
-    unknownimage = ImageTk.PhotoImage(Image.open('Unknown.jpg').resize((512, 288), Image.NEAREST))
+    unknownimage = ImageTk.PhotoImage(Image.open('images/Unknown.jpg').resize((512, 288), Image.NEAREST))
     unknownimagelabel = Label(room6b, image=unknownimage)
     unknownimagelabel.pack()
     
@@ -492,7 +495,7 @@ def Trap():
 You’ve fallen into a trap! The room fills with an alien gas, and your vision fades. You’ve failed…''')
     q6a.pack()
 
-    trapimage = ImageTk.PhotoImage(Image.open('Trap.jpg'))
+    trapimage = ImageTk.PhotoImage(Image.open('images/Trap.jpg'))
     trapimagelabel = Label(trapwindow, image=trapimage)
     trapimagelabel.pack()
     
@@ -542,7 +545,7 @@ There is a riddle on the digital lock: “What is the smallest positive integer 
     submit7 = Button(bottomframe, text='Submit', command=Room7Submit)
     submit7.pack()
     
-    controlroomimage = ImageTk.PhotoImage(Image.open('Control_Room.jpg').resize((653, 306), Image.NEAREST))
+    controlroomimage = ImageTk.PhotoImage(Image.open('images/Control_Room.jpg').resize((653, 306), Image.NEAREST))
     controlroomimagelabel = Label(room7, image=controlroomimage)
     controlroomimagelabel.pack()
 
@@ -596,7 +599,7 @@ What is the output?
     submit8 = Button(bottomframe, text='Submit', command=Room8Submit)
     submit8.pack()
 
-    quantumnnexusimage = ImageTk.PhotoImage(Image.open('Quantum_Nexus.jpg'))
+    quantumnnexusimage = ImageTk.PhotoImage(Image.open('images/Quantum_Nexus.jpg'))
     quantumnnexusimagelabel = Label(room8, image=quantumnnexusimage)
     quantumnnexusimagelabel.pack()
     
@@ -617,7 +620,7 @@ You’ve done it! You’ve secured the Quantum Nexus and saved Earth from a real
     quitbutton = Button(successwindow, text='Exit the Program', command=exit)
     quitbutton.pack()
     
-    successimage = ImageTk.PhotoImage(Image.open('Success.jpg').resize((600, 400), Image.NEAREST))
+    successimage = ImageTk.PhotoImage(Image.open('images/Success.jpg').resize((600, 400), Image.NEAREST))
     successimagelabel = Label(successwindow, image=successimage)
     successimagelabel.pack()
     
@@ -637,7 +640,7 @@ Reality begins to warp and twist around you as the Nexus is activated. The world
     quitbutton = Button(failedwindow, text='Exit the Program', command=exit)
     quitbutton.pack()
     
-    failedimage = ImageTk.PhotoImage(Image.open('Failed.jpg').resize((600, 340), Image.NEAREST))
+    failedimage = ImageTk.PhotoImage(Image.open('images/Failed.jpg').resize((600, 340), Image.NEAREST))
     failedimagelabel = Label(failedwindow, image=failedimage)
     failedimagelabel.pack()
        
@@ -654,7 +657,7 @@ timerObject.attachLabel(timer)
 
 startbutton = Button(middleframe, text='Start!', command=Room_1)
 startbutton.pack()
-startimage = ImageTk.PhotoImage(Image.open('Desert.jpg').resize((300, 200), Image.NEAREST))
+startimage = ImageTk.PhotoImage(Image.open('images/Desert.jpg').resize((300, 200), Image.NEAREST))
 startimagelabel = Label(window1, image=startimage)
 startimagelabel.pack()
   
