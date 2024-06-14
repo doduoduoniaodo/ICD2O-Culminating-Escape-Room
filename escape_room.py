@@ -16,7 +16,7 @@ mixer.init()
 # play the background music
 mixer.music.load("Background_music.mp3")
 mixer.music.set_volume(0.4)
-mixer.music.play(loops=8)
+mixer.music.play(loops=10)
 
 # create a menubar for user to quit the program
 menubar = Menu(window1)
