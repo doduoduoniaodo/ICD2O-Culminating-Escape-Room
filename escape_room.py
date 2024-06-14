@@ -57,7 +57,7 @@ def Room1Submit():
         room1.destroy()
         Room_2()
     else:
-        tryagain1 = Label(room1, text='Try Again...')
+        tryagain1 = Label(room1, text='Try Again...', font=('consolas', 10), fg='red')
         tryagain1.pack()
 
 def Room1Clue():
@@ -68,8 +68,9 @@ def Room_1():
 
     room1 = Toplevel()
     room1.title('The Entrance')
+    room1.config(background='#d9d2c5')
     
-    clue1 = Button(room1, text='Clue', command=Room1Clue)
+    clue1 = Button(room1, text='Clue', command=Room1Clue, bg='#c5f2d9', font=('', 11))
     clue1.pack(anchor='ne')
     
     try:
@@ -80,18 +81,18 @@ def Room_1():
     room1timer.pack()
     timerObject.attachLabel(room1timer)
     
-    middleframe = Frame(room1)
+    middleframe = Frame(room1, relief=GROOVE, borderwidth=5)
     middleframe.pack()
     
     q1 = Label(middleframe, text='''You enter the palace and you want to go deeper.
 You soon find there is a huge door and a digital lock on it. You look closer and see a hint next to it.
-“Binary number of the place you at”''')
+“The binary number of the place you at”''', font=('consolas', 11), bg='#c5d2d9')
     q1.pack()
     
-    entry1 = Entry(middleframe, justify='center')
+    entry1 = Entry(room1, justify='center')
     entry1.pack()
     
-    submit1 = Button(middleframe, text='Submit', command=Room1Submit)
+    submit1 = Button(room1, text='Submit', command=Room1Submit)
     submit1.pack()
     
     entranceimage = ImageTk.PhotoImage(Image.open('images/Entrance.jpg'))
@@ -110,7 +111,7 @@ def Room2Submit():
         room2.destroy()
         Room_3()
     else:
-        tryagain2 = Label(room2, text='Try Again...')
+        tryagain2 = Label(room2, text='Try Again...', font=('consolas', 11), fg='red')
         tryagain2.pack()
 
 def Room2Clue():
@@ -121,15 +122,16 @@ def Room_2():
     
     room2 = Toplevel()
     room2.title('The Meeting Room')
+    room2.config(background='#d9d2c5')
     
-    clue2 = Button(room2, text='Clue', command=Room2Clue)
+    clue2 = Button(room2, text='Clue', command=Room2Clue, bg='#c5f2d9', font=('', 11))
     clue2.pack(anchor='ne')
     
     room2timer = Label(room2, fg='red')
     room2timer.pack()
     timerObject.attachLabel(room2timer)
 
-    topframe = Frame(room2)
+    topframe = Frame(room2, relief=GROOVE, borderwidth=5)
     middleframe = Frame(room2)
     bottomframe = Frame(room2)
     topframe.pack()
@@ -138,7 +140,8 @@ def Room_2():
     
     q2 = Label(topframe, text='''You enter the meeting room and your find a bigger door. 
 There are no hints beside the digital lock. Fortunately, you find a notepad on the desk and there are some words… 
-“Tell me the date of the first human space flight! In binary! (19xx)”''')
+“Tell me the date of the first human space flight! In binary! (19xx)”''', 
+font=('consolas', 11), bg='#c5d2d9')
     q2.pack()
     
     entry2 = Entry(middleframe, justify='center')
@@ -169,13 +172,14 @@ def Room_3():
     
     room3 = Toplevel()
     room3.title('The Atrium')
+    room3.config(background='#d9d2c5')
     room3.attributes('-topmost', 'true')
 
     room3timer = Label(room3, fg='red')
     room3timer.pack()
     timerObject.attachLabel(room3timer)
 
-    topframe = Frame(room3)
+    topframe = Frame(room3, relief=GROOVE, borderwidth=5)
     middleframe = Frame(room3)
     bottomframe = Frame(room3)
     topframe.pack()
@@ -184,7 +188,8 @@ def Room_3():
     
     q3 = Label(topframe, text='''You come to the atrium. 
 You realize that this palace is way larger than you thought. You have a long way to go… 
-There is an elevator. It can’t select floors. You can decide whether to go up or down. ''')
+There is an elevator. It can’t select floors. You can decide whether to go up or down.''', 
+font=('consolas', 11), bg='#c5d2d9')
     q3.pack()
     
     upordown = IntVar()
@@ -211,7 +216,7 @@ def Room4Submit():
         room4.destroy()
         Room_5()
     else:
-        tryagain4 = Label(room4, text='Try Again...')
+        tryagain4 = Label(room4, text='Try Again...', font=('consolas', 10), fg='red')
         tryagain4.pack()
 
 def Room4Clue():
@@ -222,8 +227,9 @@ def Room_4():
     
     room4 = Toplevel()
     room4.title('The Machine Room')
+    room4.config(background='#d9d2c5')
     
-    clue4 = Button(room4, text='Clue', command=Room4Clue)
+    clue4 = Button(room4, text='Clue', command=Room4Clue, bg='#c5f2d9', font=('', 11))
     clue4.pack(anchor='ne')
 
     room4timer = Label(room4, fg='red')
@@ -234,7 +240,7 @@ def Room_4():
     clockimagelabel = Label(room4, image=clockimage)
     clockimagelabel.pack()
     
-    topframe = Frame(room4)
+    topframe = Frame(room4, relief=GROOVE, borderwidth=5)
     middleframe = Frame(room4)
     bottomframe = Frame(room4)
     topframe.pack()
@@ -244,7 +250,8 @@ def Room_4():
     q4 = Label(topframe, text='''You come to the machine room but you can’t see anything. 
 You feel for the light switch on the wall and turn it on. There are some old computers on the desks. 
 Beside the screen, there is a door. Again, no hints. You notice that there is a note on the desk. 
-“The passcode is the angle between the hour and minute hands of the clock”''')
+“The passcode is the angle between the hour and minute hands of the clock”''', 
+font=('consolas', 11), bg='#c5d2d9')
     q4.pack()
     
     entry4 = Entry(middleframe, justify='center')
@@ -276,13 +283,14 @@ def Room_5():
     
     room5 = Toplevel()
     room5.title('The Narrow Corridor')
+    room5.config(background='#d9d2c5')
     room5.attributes('-topmost', 'true')
 
     room5timer = Label(room5, fg='red')
     room5timer.pack()
     timerObject.attachLabel(room5timer)
 
-    topframe = Frame(room5)
+    topframe = Frame(room5, relief=GROOVE, borderwidth=5)
     middleframe = Frame(room5)
     bottomframe = Frame(room5)
     topframe.pack()
@@ -291,7 +299,8 @@ def Room_5():
     
     q5 = Label(topframe, text='''You exit the machine room, now here is a narrow corridor. 
 At the end, there are two doors. There are signs on each door. 
-“Certainty” and “Uncertainty”. Which one would you choose?''')
+“Certainty” and “Uncertainty”. Which one would you choose?''', 
+font=('consolas', 11), bg='#c5d2d9')
     q5.pack()
     
     c_or_unc = IntVar()
@@ -330,27 +339,32 @@ def Room_6A():
     
     room6a = Toplevel()
     room6a.title('The Lab')
+    room6a.config(background='#d9d2c5')
 
-    clue6a = Button(room6a, text='Clue', command=Room6aClue)
+    clue6a = Button(room6a, text='Clue', command=Room6aClue, bg='#c5f2d9', font=('', 11))
     clue6a.pack(anchor='ne')
     
     room6atimer = Label(room6a, fg='red')
     room6atimer.pack()
     timerObject.attachLabel(room6atimer)
     
-    room6apuzzleimage = ImageTk.PhotoImage(Image.open('images/room_6a_puzzle.png'))
-    room6apuzzleimagelabel = Label(room6a, image=room6apuzzleimage)
-    room6apuzzleimagelabel.pack()
-    
-    topframe = Frame(room6a)
+    topframe = Frame(room6a, relief=GROOVE, borderwidth=5, bg='#c5d2d9')
     middleframe = Frame(room6a)
     bottomframe = Frame(room6a)
     topframe.pack()
     middleframe.pack()
     bottomframe.pack()
     
-    q6a = Label(topframe, text='''''')
+    q6a = Label(topframe, text='''Good, everyone likes certainty. Continue to move on! 
+You are in the lab. You notice that here is the place where those people studied the “Quantum Nexus” in the past. 
+There is a door that says “Do not enter”. But that is the only place you can go. Again, a digital lock. Again, no hints. 
+You realize that the “Certainty” sign and an unsolved puzzle are on the board.''', 
+font=('consolas', 11), bg='#c5d2d9')
     q6a.pack()
+    
+    room6apuzzleimage = ImageTk.PhotoImage(Image.open('images/room_6a_puzzle.png'))
+    room6apuzzleimagelabel = Label(topframe, image=room6apuzzleimage)
+    room6apuzzleimagelabel.pack()
     
     entry6a = Entry(middleframe, justify='center')
     entry6a.pack()
@@ -388,7 +402,7 @@ def Room6bSubmit():
         for y in range(9):
             temp.add(sudoku_grid_9x9[y][x])
         if len(temp) != 9:
-            tryagain6b = Label(room6b, text='Try Again...')
+            tryagain6b = Label(room6b, text='Try Again...', font=('consolas', 10), fg='red')
             tryagain6b.pack()
             return
     
@@ -396,7 +410,7 @@ def Room6bSubmit():
     for x in range(9):
         temp = set(sudoku_grid_9x9[x])
         if len(temp) != 9:
-            tryagain6b = Label(room6b, text='Try Again...')
+            tryagain6b = Label(room6b, text='Try Again...', font=('consolas', 10), fg='red')
             tryagain6b.pack()
             return
     
@@ -417,7 +431,7 @@ def Room6bSubmit():
             temp.add(sudoku_grid_9x9[x+2][y+2])
             
             if len(temp) != 9:
-                tryagain6b = Label(room6b, text='Try Again...')
+                tryagain6b = Label(room6b, text='Try Again...', font=('consolas', 10), fg='red')
                 tryagain6b.pack()
                 return
     
@@ -428,28 +442,34 @@ def Room6bSubmit():
     return
 
 def Room6bClue():
-    answer6b = Label(room6b, text=answer)
-    answer6b.pack()
+    for i in range(9):
+        answer6b = Label(room6b, text=answer[i])
+        answer6b.pack()
 
 def Room_6B():
     global entry6b, unknownimage, room6b, room6btimer, answer
     
     room6b = Toplevel()
     room6b.title('The Unknown')
-    room6b.attributes('-topmost', 'true')
+    room6b.config(background='#d9d2c5')
     
-    clue6b = Button(room6b, text='Clue', command=Room6bClue)
+    clue6b = Button(room6b, text='Clue', command=Room6bClue, bg='#c5f2d9', font=('', 11))
     clue6b.pack(anchor='ne')
     
     room6btimer = Label(room6b, fg='red')
     room6btimer.pack()
     timerObject.attachLabel(room6btimer)
 
-    q6b = Label(room6b, text='''Good, everyone likes uncertainty. You are in an unknown room. 
+    topframe = Frame(room6b, relief=GROOVE, borderwidth=5)
+    topframe.pack()
+    
+    q6b = Label(topframe, text='''Good, everyone likes uncertainty. You are in an unknown room. 
 There is a magic cube! It is a design diagram. Each side is 3x3 and there are numbers on it. 
 Combined 9 sides become a 9x9 grid. You notice that this may be a sudoku puzzle. 
-Objective: Fill a 9 x 9 grid with digits so that each column, each row, and each of the six 3 x 3 subgrids that compose the grid contains all of the digits from 1 to 6. 
-There may be a lot of possible solutions. Come up with one of any of them.''')
+Objective: Fill a 9 x 9 grid with digits so that each column, each row, and each of the six 3 x 3 subgrids 
+that compose the grid contains all of the digits from 1 to 6. 
+There may be a lot of possible solutions. Come up with one of any of them.''', 
+font=('consolas', 11), bg='#c5d2d9')
     q6b.pack()
     
     sudokuframe = Frame(room6b)
@@ -521,9 +541,14 @@ def Trap():
     global trapimage
     trapwindow = Toplevel()
     trapwindow.title('Trap')
+    trapwindow.config(background='#d9d2c5')
     
-    qtrap = Label(trapwindow, text='''That’s not correct! 
-You’ve fallen into a trap! The room fills with an alien gas, and your vision fades. You’ve failed…''')
+    topframe = Frame(trapwindow, relief=GROOVE, borderwidth=5)
+    topframe.pack()
+    
+    qtrap = Label(topframe, text='''That’s not correct! 
+You’ve fallen into a trap! The room fills with an alien gas, and your vision fades. You’ve failed…''', 
+font=('consolas', 11), bg='#c5d2d9')
     qtrap.pack()
 
     trapimage = ImageTk.PhotoImage(Image.open('images/Trap.jpg'))
@@ -541,7 +566,7 @@ def Room7Submit():
         room7.destroy()
         Room_8()
     else:
-        tryagain7 = Label(room7, text='Try Again...')
+        tryagain7 = Label(room7, text='Try Again...', font=('consolas', 10), fg='red')
         tryagain7.pack()
 
 def Room7Clue():
@@ -551,15 +576,16 @@ def Room_7():
     global room7, entry7, room7timer, controlroomimage
     room7 = Toplevel()
     room7.title('The Control Room')
+    room7.config(background='#d9d2c5')
 
-    clue7 = Button(room7, text='Clue', command=Room7Clue)
+    clue7 = Button(room7, text='Clue', command=Room7Clue, bg='#c5f2d9', font=('', 11))
     clue7.pack(anchor='ne')
     
     room7timer = Label(room7, fg='red')
     room7timer.pack()
     timerObject.attachLabel(room7timer)
     
-    topframe = Frame(room7)
+    topframe = Frame(room7, relief=GROOVE, borderwidth=5)
     middleframe = Frame(room7)
     bottomframe = Frame(room7)
     topframe.pack()
@@ -567,7 +593,8 @@ def Room_7():
     bottomframe.pack()
     
     q7 = Label(topframe, text='''You are standing in front of the control room. Unfortunately, it is also locked. 
-There is a riddle on the digital lock: “What is the smallest positive integer that can be expressed as the sum of two cubes in two different ways?”''')
+There is a riddle on the digital lock: “What is the smallest positive integer that can be expressed as the sum of two cubes in two different ways?”''',
+font=('consolas', 11), bg='#c5d2d9')
     q7.pack()
     
     entry7 = Entry(middleframe, justify='center')
@@ -595,34 +622,34 @@ def Room8Submit():
         Failed()
 
 def Room_8():
-    global room8, entry8, room8timer, quantumnnexusimage
+    global room8, entry8, room8timer, quantumnnexusimage, q8_2
     room8 = Toplevel()
     room8.title('The Quantum Nexus')
+    room8.config(background='#d9d2c5')
 
     room8timer = Label(room8, fg='red')
     room8timer.pack()
     timerObject.attachLabel(room8timer)
     
-    topframe = Frame(room8)
+    topframe = Frame(room8, bg='#c5d2d9', relief=GROOVE, borderwidth=5)
     middleframe = Frame(room8)
     bottomframe = Frame(room8)
     topframe.pack()
     middleframe.pack()
     bottomframe.pack()
     
-    q8 = Label(topframe, text='''You finally reach the control room. But you find that the “Quantum Nexus” is not in here! 
+    q8_1 = Label(topframe, text='''You finally reach the control room. But you find that the “Quantum Nexus” is not in here! 
 You are nearly going to give up. But the curiosity leads you to press down the red button on the desks. 
-Suddenly, a well-protected box rose from the floor. There is a lock. The huge monitor suddenly turns on and shows the hint. 
+Suddenly, a well-protected box rose from the floor. There is a lock. The huge monitor suddenly turns on and shows the hint.''', 
+font=('consolas', 11), bg='#c5d2d9')
+    q8_1.pack()
 
-def solve(x):
-    if x < 10:
-        return solve(x * 2)
-    return x
-print(solve(2))
+    q8_2 = ImageTk.PhotoImage(Image.open('images/room_8_puzzle.png'))
+    q8_2l = Label(topframe, image=q8_2)
+    q8_2l.pack()
 
-What is the output? 
-''')
-    q8.pack()
+    q8_3 = Label(topframe, text='''What is the output?''', font=('consolas', 11), bg='#c5d2d9')
+    q8_3.pack()
     
     entry8 = Entry(middleframe, justify='center')
     entry8.pack()
@@ -641,12 +668,17 @@ def Success():
     global successimage
     successwindow = Toplevel()
     successwindow.title('Success')
+    successwindow.config(background='#d9d2c5')
     timerObject.stop()
     
-    successlabel = Label(successwindow, text='''After solving the final puzzle, you open the box. 
+    topframe = Frame(successwindow, relief=GROOVE, borderwidth=5)
+    topframe.pack()
+    
+    successlabel = Label(topframe, text='''After solving the final puzzle, you open the box. 
 The "Quantum Nexus" is in it! You input the passcode sequence. 
 After that, its light dims. The energy it emits becomes stabilized, and it goes dormant. 
-You’ve done it! You’ve secured the Quantum Nexus and saved Earth from a reality-twist catastrophe.''')
+You’ve done it! You’ve secured the Quantum Nexus and saved Earth from a reality-twist catastrophe.''', 
+font=('consolas', 11), bg='#c5d2d9')
     successlabel.pack()
 
     quitbutton = Button(successwindow, text='Exit the Program', command=exit)
@@ -663,11 +695,16 @@ def Failed():
     global failedimage
     failedwindow = Toplevel()
     failedwindow.title('Failed')
+    failedwindow.config(background='#d9d2c5')
     timerObject.stop()
     
-    failedlabel = Label(failedwindow, text='''Despite your best efforts, the puzzles are too challenging. 
+    topframe = Frame(failedwindow, relief=GROOVE, borderwidth=5)
+    topframe.pack()
+    
+    failedlabel = Label(topframe, text='''Despite your best efforts, the puzzles are too challenging. 
 You are considered an enemy and are locked up here forever. The “Quantum Nexus” falls into the wrong hands finally. 
-Reality begins to warp and twist around you as the Nexus is activated. The world as you know it changes, and not for the better.''')
+Reality begins to warp and twist around you as the Nexus is activated. The world as you know it changes, and not for the better.''', 
+font=('consolas', 11), bg='#c5d2d9')
     failedlabel.pack()
     
     quitbutton = Button(failedwindow, text='Exit the Program', command=exit)

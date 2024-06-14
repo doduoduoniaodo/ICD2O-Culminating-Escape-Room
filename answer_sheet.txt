@@ -1,0 +1,28 @@
+Room 1 / The Entrance: 110011
+
+Room 2 / The Meeting Room: 111101
+
+Room 3 / The Atrium: up → Room 4
+                    down → Room 1
+
+Room 4 / The Machine Room: 7.5
+
+Room 5 / The Narrow Corridor: Certainty → Room 6A
+                            Uncertainty → Room 6B
+
+Room 6A / The Lab: 36
+
+Room 6B / The Unknown: 
+[[7, 5, 3, 4, 2, 9, 6, 8, 1], 
+[8, 2, 6, 3, 1, 7, 4, 5, 9], 
+[1, 4, 9, 6, 5, 8, 7, 3, 2], 
+[2, 8, 5, 1, 3, 4, 9, 7, 6],
+[6, 9, 1, 8, 7, 2, 5, 4, 3],
+[3, 7, 4, 9, 6, 5, 1, 2, 8],
+[5, 3, 8, 7, 9, 1, 2, 6 ,4],
+[4, 1, 2, 5, 8, 6, 3, 9, 7],
+[9, 6, 7, 2, 4, 3, 8, 1, 5]]
+
+Room 7 / The Control Room: 1729
+
+Room 8 / The Quantum Nexus: 16
