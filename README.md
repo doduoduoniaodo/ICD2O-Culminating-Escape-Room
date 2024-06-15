@@ -1,8 +1,16 @@
-# Required Modules
+# Requirements
 
-- pillow
+- Python 3.8+
 
-- pygame
+- Install all the dependencies needed:
+
+  - pillow
+
+  - pygame
+
+```console
+pip install -r requirements.txt
+```
 
 # Instructions
 
